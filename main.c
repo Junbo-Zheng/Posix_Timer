@@ -27,7 +27,7 @@ static void _timer_test(timer_argv argv)
 
 int main()
 {
-    printf("This is a demo for Linux posix timer\r\n");
+    printf("This is a demo for posix timer\r\n");
 
     static uint32_t argv = 0x00;
 

@@ -34,8 +34,6 @@ timer_handle_t *fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv arg
         return NULL;
     }
 
-    // printf("fn_timer_create = %d\r\n", (uint32_t )p_timer);
-
     p_timer->type = type;
     p_timer->argv = argv;
     p_timer->callback = cb;
@@ -48,7 +46,7 @@ timer_handle_t *fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv arg
 
     if (-1 == timer_create(CLOCK_REALTIME, &evp, &(p_timer->timerid)))
     {
-        printf("timer_create failed!!!\r\n");
+        printf("Timer create failed!!!\r\n");
         free(p_timer);
         p_timer = NULL;
         return NULL;
@@ -63,16 +61,16 @@ void fn_timer_start(timer_handle_t *p_timer, timer_tick_ms tick)
 
     if (e_timer_type_cycle == p_timer->type)
     {
-        it.it_interval.tv_sec = tick / 1000;
+        it.it_interval.tv_sec  = tick / 1000;
         it.it_interval.tv_nsec = tick % 1000 * 1000000;
     }
     else
     {
-        it.it_interval.tv_sec = 0x00;
+        it.it_interval.tv_sec  = 0x00;
         it.it_interval.tv_nsec = 0x00;
     }
 
-    it.it_value.tv_sec = tick / 1000;
+    it.it_value.tv_sec  = tick / 1000;
     it.it_value.tv_nsec = tick % 1000 * 1000000;
 
     if (-1 == timer_settime(p_timer->timerid, 0, &it, NULL))
@@ -87,10 +85,10 @@ void fn_timer_stop(timer_handle_t *p_timer)
 {
     struct itimerspec it;
 
-    it.it_interval.tv_sec = 0x00;
+    it.it_interval.tv_sec  = 0x00;
     it.it_interval.tv_nsec = 0x00;
 
-    it.it_value.tv_sec = 0x00;
+    it.it_value.tv_sec  = 0x00;
     it.it_value.tv_nsec = 0x00;
 
     if (-1 == timer_settime(p_timer->timerid, 0, &it, NULL))
@@ -99,7 +97,6 @@ void fn_timer_stop(timer_handle_t *p_timer)
         free(p_timer);
         p_timer = NULL;
     }
-
 }
 
 void fn_timer_delete(timer_handle_t *p_timer)

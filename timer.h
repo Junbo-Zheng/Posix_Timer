@@ -1,6 +1,6 @@
 /***
  **
- * @filename : timer.c
+ * @filename : timer.h
  *
  * @brief    : timer Module Header File
  *
