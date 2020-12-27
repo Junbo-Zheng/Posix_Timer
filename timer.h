@@ -27,13 +27,13 @@
 #include <time.h>
 
 typedef void     (*timer_cb_t)(void *);
-typedef void*    timer_argv;
+typedef void*    timer_argv_t;
 typedef uint32_t timer_tick_ms;
 
 typedef enum
 {
     e_timer_type_oneshot = 0u,
-    e_timer_type_cycle,
+    e_timer_type_periodic,
     e_timer_type_max
 } timer_type_e;
 
@@ -42,10 +42,10 @@ typedef struct _timer_handle_t
     timer_t       timerid;    ///< timer id
     timer_type_e  type;       ///< timer options
     timer_cb_t    callback;   ///< timer callback
-    void          *argv;      ///< timer argument vector
+    timer_argv_t  argv;       ///< timer argument vector
 } timer_handle_t;
 
-timer_handle_t * fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv argv);
+timer_handle_t * fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv_t argv);
 
 void fn_timer_start(timer_handle_t * timer_handle, timer_tick_ms tick);
 

@@ -24,7 +24,7 @@ static void __timer_handle(union sigval sigev)
     p_timer->callback(p_timer->argv);
 }
 
-timer_handle_t *fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv argv)
+timer_handle_t *fn_timer_create(timer_type_e type, timer_cb_t cb, timer_argv_t argv)
 {
     timer_handle_t *p_timer = (timer_handle_t *)calloc(sizeof(timer_handle_t), sizeof(uint8_t));
 
@@ -59,7 +59,7 @@ void fn_timer_start(timer_handle_t *p_timer, timer_tick_ms tick)
 {
     struct itimerspec it;
 
-    if (e_timer_type_cycle == p_timer->type)
+    if (e_timer_type_periodic == p_timer->type)
     {
         it.it_interval.tv_sec  = tick / 1000;
         it.it_interval.tv_nsec = tick % 1000 * 1000000;
