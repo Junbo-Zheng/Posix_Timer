@@ -1,4 +1,4 @@
-cc   = gcc
+cc   = clang
 prom = main
 deps = $(shell find ./ -name "*.h")
 src  = $(shell find ./ -name "*.c")
@@ -16,4 +16,3 @@ $(prom): $(obj)
 clean:
 	rm -rf $(obj) $(prom)
 	rm -rf *.out
-#	rm -rf $(obj)

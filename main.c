@@ -15,14 +15,14 @@
  *
  * @Log      : 1. 2020-12-10 11:16:29 : zhengjunbo - Create
  */
-#include <unistd.h>
 #include "timer.h"
+#include <unistd.h>
 
 static void _timer_test(timer_argv_t argv)
 {
-    printf("timer callback is running, argv = 0x%08x\r\n", *(uint32_t *)argv);
+    printf("timer callback is running, argv = 0x%08x\r\n", *(uint32_t*)argv);
 
-    *(uint32_t *)argv += 1; ///< just fot test
+    *(uint32_t*)argv += 1; ///< just fot test
 }
 
 int main()
@@ -31,18 +31,17 @@ int main()
 
     static uint32_t argv = 0x00;
 
-    timer_handle_t *p_timer = fn_timer_create(e_timer_type_periodic, _timer_test, &argv);
+    timer_handle_t* p_timer
+        = fn_timer_create(TIMER_TYPE_PERIODIC, _timer_test, &argv);
 
-    if (NULL == p_timer)
-    {
+    if (NULL == p_timer) {
         printf("Timer create failed\r\n");
         return -1;
     }
 
-    fn_timer_start(p_timer, 500);   // 500ms
+    fn_timer_start(p_timer, 500); // 500ms
 
-    for (;;)
-    {
+    for (;;) {
         sleep(1);
     }
 
