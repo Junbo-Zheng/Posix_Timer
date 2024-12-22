@@ -36,12 +36,14 @@ typedef enum {
     TIMER_TYPE_MAX
 } timer_type_t;
 
+/* clang-format off */
 typedef struct _timer_handle_t {
-    timer_t timerid;        ///< timer id
+    timer_t      id;        ///< timer id
     timer_type_t type;      ///< timer options
-    timer_cb_t callback;    ///< timer callback
+    timer_cb_t   callback;  ///< timer callback
     timer_argv_t argv;      ///< timer argument vector
 } timer_handle_t;
+/* clang-format on */
 
 timer_handle_t* fn_timer_create(timer_type_t type, timer_cb_t cb,
                                 timer_argv_t argv);

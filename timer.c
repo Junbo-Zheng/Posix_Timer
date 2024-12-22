@@ -68,7 +68,7 @@ void fn_timer_start(timer_handle_t* p_timer, timer_tick_ms_t tick)
     it.it_value.tv_sec = tick / 1000;
     it.it_value.tv_nsec = tick % 1000 * 1000000;
 
-    if (-1 == timer_settime(p_timer->timerid, 0, &it, NULL)) {
+    if (-1 == timer_settime(p_timer->id, 0, &it, NULL)) {
         printf("Timer start failed\r\n");
         free(p_timer);
         p_timer = NULL;
@@ -85,7 +85,7 @@ void fn_timer_stop(timer_handle_t* p_timer)
     it.it_value.tv_sec = 0x00;
     it.it_value.tv_nsec = 0x00;
 
-    if (-1 == timer_settime(p_timer->timerid, 0, &it, NULL)) {
+    if (-1 == timer_settime(p_timer->id, 0, &it, NULL)) {
         printf("Timer stop failed\r\n");
         free(p_timer);
         p_timer = NULL;
@@ -94,7 +94,7 @@ void fn_timer_stop(timer_handle_t* p_timer)
 
 void fn_timer_delete(timer_handle_t* p_timer)
 {
-    if (-1 == timer_delete(p_timer->timerid)) {
+    if (-1 == timer_delete(p_timer->id)) {
         printf("Timer delete failed\r\n");
     }
 
