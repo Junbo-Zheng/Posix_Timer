@@ -5,7 +5,7 @@ project(timer LANGUAGES C)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_compile_options(-Wall -Wextra -Werror -Wno-format -g)
 
-add_library(posix_timer SHARED timer.c)
+add_library(posix_timer STATIC timer.c)
 
 add_executable(timer main.c)
 target_link_libraries(timer posix_timer rt)
