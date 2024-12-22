@@ -1,0 +1,36 @@
+name: build
+
+on:
+  pull_request:
+    paths-ignore:
+      - "Documentation/**"
+  push:
+    paths-ignore:
+      - "Documentation/**"
+    branches:
+      - master
+      - "releases/*"
+    tags:
+
+jobs:
+  build-gcc:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: cmake -S . -B build
+      - run: cmake --build build -j20
+  build-clang:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      CC: clang
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v3
+      - run: cmake -S . -B build
+      - run: cmake --build build -j20
