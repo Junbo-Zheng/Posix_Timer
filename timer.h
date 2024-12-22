@@ -37,10 +37,10 @@ typedef enum {
 } timer_type_t;
 
 typedef struct _timer_handle_t {
-    timer_t timerid; ///< timer id
-    timer_type_t type; ///< timer options
-    timer_cb_t callback; ///< timer callback
-    timer_argv_t argv; ///< timer argument vector
+    timer_t timerid;        ///< timer id
+    timer_type_t type;      ///< timer options
+    timer_cb_t callback;    ///< timer callback
+    timer_argv_t argv;      ///< timer argument vector
 } timer_handle_t;
 
 timer_handle_t* fn_timer_create(timer_type_t type, timer_cb_t cb,

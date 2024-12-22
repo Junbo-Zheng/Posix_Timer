@@ -22,7 +22,7 @@ static void _timer_test(timer_argv_t argv)
 {
     printf("timer callback is running, argv = 0x%08x\r\n", *(uint32_t*)argv);
 
-    *(uint32_t*)argv += 1; ///< just fot test
+    *(uint32_t*)argv += 1;    ///< just fot test
 }
 
 int main()
@@ -39,7 +39,7 @@ int main()
         return -1;
     }
 
-    fn_timer_start(p_timer, 500); // 500ms
+    fn_timer_start(p_timer, 500);    // 500ms
 
     for (;;) {
         sleep(1);

@@ -94,8 +94,9 @@ void fn_timer_stop(timer_handle_t* p_timer)
 
 void fn_timer_delete(timer_handle_t* p_timer)
 {
-    if (-1 == timer_delete(p_timer->timerid))
+    if (-1 == timer_delete(p_timer->timerid)) {
         printf("Timer delete failed\r\n");
+    }
 
     free(p_timer);
     p_timer = NULL;
