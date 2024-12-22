@@ -43,7 +43,7 @@ timer_handle_t* fn_timer_create(timer_type_t type, timer_cb_t cb,
                             .sigev_value.sival_ptr = (void*)p_timer,
                             .sigev_notify_function = __timer_handle };
 
-    if (-1 == timer_create(CLOCK_REALTIME, &evp, &(p_timer->timerid))) {
+    if (-1 == timer_create(CLOCK_REALTIME, &evp, &(p_timer->id))) {
         printf("Timer create failed!!!\r\n");
         free(p_timer);
         p_timer = NULL;
